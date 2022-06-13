@@ -1038,3 +1038,76 @@ Events:
 kubectl get storageclass
 NAME       PROVISIONER    RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
 biocloud   nfs-biocloud   Retain          WaitForFirstConsumer   false                  228d
+
+
+python patch.py
+start to patch...
+Error from server (NotFound): error when deleting "./patch/auth.yaml": configmaps "dex" not found
+Error from server (NotFound): error when deleting "./patch/auth.yaml": deployments.apps "dex" not found
+Error from server (NotFound): error when deleting "./patch/auth.yaml": configmaps "default-install-config-9h2h2b6hbk" not found
+profile.kubeflow.org "kubeflow-user-example-com" deleted
+
+configmap/dex created
+deployment.apps/dex created
+configmap/default-install-config-9h2h2b6hbk created
+profile.kubeflow.org/kubeflow-user-example-com configured
+
+deployment.apps "cluster-local-gateway" deleted
+
+deployment.apps/cluster-local-gateway created
+
+deployment.apps "minio" deleted
+
+deployment.apps/minio created
+
+envoyfilter.networking.istio.io "authn-filter" deleted
+
+envoyfilter.networking.istio.io/authn-filter created
+
+deployment.apps "istio-ingressgateway" deleted
+
+deployment.apps/istio-ingressgateway created
+
+deployment.apps "istiod" deleted
+configmap "istio-sidecar-injector" deleted
+
+deployment.apps/istiod created
+configmap/istio-sidecar-injector created
+
+deployment.apps "jupyter-web-app-deployment" deleted
+
+deployment.apps/jupyter-web-app-deployment created
+
+image.caching.internal.knative.dev "queue-proxy" deleted
+configmap "config-deployment" deleted
+configmap "inferenceservice-config" deleted
+
+image.caching.internal.knative.dev/queue-proxy created
+configmap/config-deployment created
+configmap/inferenceservice-config created
+
+configmap "kubeflow-pipelines-profile-controller-code-c2cd68d9k4" deleted
+configmap "pipeline-install-config" deleted
+deployment.apps "workflow-controller" deleted
+deployment.apps "kubeflow-pipelines-profile-controller" deleted
+
+configmap/kubeflow-pipelines-profile-controller-code-c2cd68d9k4 created
+configmap/pipeline-install-config created
+deployment.apps/workflow-controller created
+deployment.apps/kubeflow-pipelines-profile-controller created
+
+deployment.apps "tensorboards-web-app-deployment" deleted
+
+deployment.apps/tensorboards-web-app-deployment created
+
+deployment.apps "volumes-web-app-deployment" deleted
+
+deployment.apps/volumes-web-app-deployment created
+
+configmap "workflow-controller-configmap" deleted
+deployment.apps "workflow-controller" deleted
+deployment.apps "cache-server" deleted
+
+configmap/workflow-controller-configmap created
+deployment.apps/workflow-controller created
+deployment.apps/cache-server created
