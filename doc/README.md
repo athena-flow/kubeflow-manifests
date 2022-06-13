@@ -7,4 +7,5 @@ python install.py
 kubectl get po -A
 
 kubectl get po -A|grep kubeflow
+sudo docker images|grep google
 ```
