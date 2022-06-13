@@ -653,3 +653,734 @@ grep -r 'kind: Profile' .
 ./manifest1.3/033-user-namespace-user-namespace-base.yaml:kind: Profile
 ./manifest1.3/024-profiles-overlays-kubeflow.yaml:    kind: Profile
 
+
+python install.py
+kubectl apply -f ./manifest1.3/001-cert-manager-cert-manager-kube-system-resources-base.yaml
+role.rbac.authorization.k8s.io/cert-manager-cainjector:leaderelection unchanged
+role.rbac.authorization.k8s.io/cert-manager:leaderelection unchanged
+rolebinding.rbac.authorization.k8s.io/cert-manager-cainjector:leaderelection configured
+rolebinding.rbac.authorization.k8s.io/cert-manager-webhook:webhook-authentication-reader configured
+rolebinding.rbac.authorization.k8s.io/cert-manager:leaderelection configured
+configmap/cert-manager-kube-params-parameters unchanged
+
+kubectl apply -f ./manifest1.3/002-cert-manager-cert-manager-crds-base.yaml
+customresourcedefinition.apiextensions.k8s.io/certificaterequests.cert-manager.io unchanged
+customresourcedefinition.apiextensions.k8s.io/certificates.cert-manager.io unchanged
+customresourcedefinition.apiextensions.k8s.io/challenges.acme.cert-manager.io unchanged
+customresourcedefinition.apiextensions.k8s.io/clusterissuers.cert-manager.io unchanged
+customresourcedefinition.apiextensions.k8s.io/issuers.cert-manager.io unchanged
+customresourcedefinition.apiextensions.k8s.io/orders.acme.cert-manager.io unchanged
+
+kubectl apply -f ./manifest1.3/003-cert-manager-overlays-self-signed.yaml
+namespace/cert-manager unchanged
+serviceaccount/cert-manager unchanged
+serviceaccount/cert-manager-cainjector unchanged
+serviceaccount/cert-manager-webhook unchanged
+clusterrole.rbac.authorization.k8s.io/cert-manager-edit unchanged
+clusterrole.rbac.authorization.k8s.io/cert-manager-view unchanged
+clusterrole.rbac.authorization.k8s.io/cert-manager-webhook:webhook-requester unchanged
+clusterrole.rbac.authorization.k8s.io/cert-manager-cainjector unchanged
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-certificates unchanged
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-challenges unchanged
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-clusterissuers unchanged
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-ingress-shim unchanged
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-issuers unchanged
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-orders unchanged
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-cainjector unchanged
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-certificates unchanged
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-challenges unchanged
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-clusterissuers unchanged
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-ingress-shim unchanged
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-issuers unchanged
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-orders unchanged
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-webhook:auth-delegator configured
+configmap/cert-manager-parameters unchanged
+service/cert-manager unchanged
+service/cert-manager-webhook unchanged
+deployment.apps/cert-manager unchanged
+deployment.apps/cert-manager-cainjector configured
+deployment.apps/cert-manager-webhook configured
+apiservice.apiregistration.k8s.io/v1beta1.webhook.cert-manager.io unchanged
+clusterissuer.cert-manager.io/kubeflow-self-signing-issuer unchanged
+mutatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook configured
+validatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook configured
+
+kubectl apply -f ./manifest1.3/004-istio-1-9-0-istio-crds-base.yaml
+customresourcedefinition.apiextensions.k8s.io/authorizationpolicies.security.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/destinationrules.networking.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/envoyfilters.networking.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/gateways.networking.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/istiooperators.install.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/peerauthentications.security.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/requestauthentications.security.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/serviceentries.networking.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/sidecars.networking.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/virtualservices.networking.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/workloadentries.networking.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/workloadgroups.networking.istio.io unchanged
+
+kubectl apply -f ./manifest1.3/005-istio-1-9-0-istio-namespace-base.yaml
+namespace/istio-system unchanged
+
+kubectl apply -f ./manifest1.3/006-istio-1-9-0-istio-install-base.yaml
+serviceaccount/istio-ingressgateway-service-account unchanged
+serviceaccount/istio-reader-service-account unchanged
+serviceaccount/istiod-service-account unchanged
+role.rbac.authorization.k8s.io/istio-ingressgateway-sds unchanged
+role.rbac.authorization.k8s.io/istiod-istio-system unchanged
+clusterrole.rbac.authorization.k8s.io/istio-reader-istio-system unchanged
+clusterrole.rbac.authorization.k8s.io/istiod-istio-system unchanged
+rolebinding.rbac.authorization.k8s.io/istio-ingressgateway-sds unchanged
+rolebinding.rbac.authorization.k8s.io/istiod-istio-system unchanged
+clusterrolebinding.rbac.authorization.k8s.io/istio-reader-istio-system unchanged
+clusterrolebinding.rbac.authorization.k8s.io/istiod-istio-system unchanged
+configmap/istio unchanged
+configmap/istio-sidecar-injector configured
+service/istio-ingressgateway unchanged
+service/istiod unchanged
+deployment.apps/istio-ingressgateway configured
+deployment.apps/istiod configured
+envoyfilter.networking.istio.io/metadata-exchange-1.8 unchanged
+envoyfilter.networking.istio.io/metadata-exchange-1.9 unchanged
+envoyfilter.networking.istio.io/stats-filter-1.8 unchanged
+envoyfilter.networking.istio.io/stats-filter-1.9 unchanged
+envoyfilter.networking.istio.io/tcp-metadata-exchange-1.8 unchanged
+envoyfilter.networking.istio.io/tcp-metadata-exchange-1.9 unchanged
+envoyfilter.networking.istio.io/tcp-stats-filter-1.8 unchanged
+envoyfilter.networking.istio.io/tcp-stats-filter-1.9 unchanged
+envoyfilter.networking.istio.io/x-forwarded-host unchanged
+gateway.networking.istio.io/istio-ingressgateway unchanged
+authorizationpolicy.security.istio.io/global-deny-all unchanged
+authorizationpolicy.security.istio.io/istio-ingressgateway unchanged
+mutatingwebhookconfiguration.admissionregistration.k8s.io/istio-sidecar-injector configured
+validatingwebhookconfiguration.admissionregistration.k8s.io/istiod-istio-system configured
+
+kubectl apply -f ./manifest1.3/007-oidc-authservice-oidc-authservice-base.yaml
+The PersistentVolumeClaim "authservice-pvc" is invalid: spec: Forbidden: is immutable after creation except resources.requests for bound claims
+configmap/oidc-authservice-parameters unchanged
+secret/oidc-authservice-client unchanged
+service/authservice unchanged
+statefulset.apps/authservice unchanged
+envoyfilter.networking.istio.io/authn-filter unchanged
+
+kubectl apply -f ./manifest1.3/008-dex-overlays-istio.yaml
+namespace/auth unchanged
+customresourcedefinition.apiextensions.k8s.io/authcodes.dex.coreos.com unchanged
+serviceaccount/dex unchanged
+clusterrole.rbac.authorization.k8s.io/dex unchanged
+clusterrolebinding.rbac.authorization.k8s.io/dex unchanged
+configmap/dex configured
+secret/dex-oidc-client unchanged
+service/dex unchanged
+deployment.apps/dex configured
+virtualservice.networking.istio.io/dex unchanged
+
+kubectl apply -f ./manifest1.3/009-knative-knative-serving-crds-base.yaml
+namespace/knative-serving unchanged
+customresourcedefinition.apiextensions.k8s.io/certificates.networking.internal.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/configurations.serving.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/images.caching.internal.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/ingresses.networking.internal.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/metrics.autoscaling.internal.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/podautoscalers.autoscaling.internal.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/revisions.serving.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/routes.serving.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/serverlessservices.networking.internal.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/services.serving.knative.dev unchanged
+
+kubectl apply -f ./manifest1.3/010-knative-knative-serving-install-base.yaml
+serviceaccount/controller unchanged
+clusterrole.rbac.authorization.k8s.io/knative-serving-addressable-resolver unchanged
+clusterrole.rbac.authorization.k8s.io/knative-serving-admin configured
+clusterrole.rbac.authorization.k8s.io/knative-serving-core unchanged
+clusterrole.rbac.authorization.k8s.io/knative-serving-istio unchanged
+clusterrole.rbac.authorization.k8s.io/knative-serving-namespaced-admin unchanged
+clusterrole.rbac.authorization.k8s.io/knative-serving-namespaced-edit unchanged
+clusterrole.rbac.authorization.k8s.io/knative-serving-namespaced-view unchanged
+clusterrole.rbac.authorization.k8s.io/knative-serving-podspecable-binding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/knative-serving-controller-admin unchanged
+configmap/config-autoscaler unchanged
+configmap/config-defaults unchanged
+configmap/config-deployment configured
+configmap/config-domain unchanged
+configmap/config-gc unchanged
+configmap/config-istio unchanged
+configmap/config-leader-election unchanged
+configmap/config-logging unchanged
+configmap/config-network unchanged
+configmap/config-observability unchanged
+configmap/config-tracing unchanged
+secret/istio-webhook-certs unchanged
+secret/webhook-certs unchanged
+service/activator-service unchanged
+service/autoscaler unchanged
+service/controller unchanged
+service/istio-webhook unchanged
+service/webhook unchanged
+deployment.apps/activator configured
+deployment.apps/autoscaler unchanged
+deployment.apps/controller configured
+deployment.apps/istio-webhook unchanged
+deployment.apps/networking-istio unchanged
+deployment.apps/webhook unchanged
+horizontalpodautoscaler.autoscaling/activator unchanged
+image.caching.internal.knative.dev/queue-proxy configured
+destinationrule.networking.istio.io/knative unchanged
+gateway.networking.istio.io/cluster-local-gateway unchanged
+authorizationpolicy.security.istio.io/activator-service unchanged
+authorizationpolicy.security.istio.io/autoscaler unchanged
+authorizationpolicy.security.istio.io/controller unchanged
+authorizationpolicy.security.istio.io/istio-webhook unchanged
+authorizationpolicy.security.istio.io/webhook unchanged
+mutatingwebhookconfiguration.admissionregistration.k8s.io/webhook.istio.networking.internal.knative.dev unchanged
+mutatingwebhookconfiguration.admissionregistration.k8s.io/webhook.serving.knative.dev unchanged
+validatingwebhookconfiguration.admissionregistration.k8s.io/config.webhook.istio.networking.internal.knative.dev unchanged
+validatingwebhookconfiguration.admissionregistration.k8s.io/config.webhook.serving.knative.dev unchanged
+validatingwebhookconfiguration.admissionregistration.k8s.io/validation.webhook.serving.knative.dev unchanged
+
+kubectl apply -f ./manifest1.3/011-knative-knative-eventing-crds-base.yaml
+namespace/knative-eventing unchanged
+customresourcedefinition.apiextensions.k8s.io/apiserversources.sources.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/brokers.eventing.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/channels.messaging.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/configmappropagations.configs.internal.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/containersources.sources.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/eventtypes.eventing.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/inmemorychannels.messaging.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/parallels.flows.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/pingsources.sources.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/sequences.flows.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/sinkbindings.sources.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/subscriptions.messaging.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/triggers.eventing.knative.dev unchanged
+
+kubectl apply -f ./manifest1.3/012-knative-knative-eventing-install-base.yaml
+serviceaccount/eventing-controller unchanged
+serviceaccount/eventing-webhook unchanged
+serviceaccount/imc-controller unchanged
+serviceaccount/imc-dispatcher unchanged
+serviceaccount/pingsource-jobrunner unchanged
+clusterrole.rbac.authorization.k8s.io/addressable-resolver configured
+clusterrole.rbac.authorization.k8s.io/broker-addressable-resolver unchanged
+clusterrole.rbac.authorization.k8s.io/builtin-podspecable-binding unchanged
+clusterrole.rbac.authorization.k8s.io/channel-addressable-resolver unchanged
+clusterrole.rbac.authorization.k8s.io/channelable-manipulator configured
+clusterrole.rbac.authorization.k8s.io/eventing-broker-filter unchanged
+clusterrole.rbac.authorization.k8s.io/eventing-broker-ingress unchanged
+clusterrole.rbac.authorization.k8s.io/eventing-config-reader unchanged
+clusterrole.rbac.authorization.k8s.io/eventing-sources-source-observer unchanged
+clusterrole.rbac.authorization.k8s.io/flows-addressable-resolver unchanged
+clusterrole.rbac.authorization.k8s.io/imc-addressable-resolver unchanged
+clusterrole.rbac.authorization.k8s.io/imc-channelable-manipulator unchanged
+clusterrole.rbac.authorization.k8s.io/imc-controller unchanged
+clusterrole.rbac.authorization.k8s.io/imc-dispatcher unchanged
+clusterrole.rbac.authorization.k8s.io/knative-eventing-channel-broker-controller unchanged
+clusterrole.rbac.authorization.k8s.io/knative-eventing-controller unchanged
+clusterrole.rbac.authorization.k8s.io/knative-eventing-jobrunner unchanged
+clusterrole.rbac.authorization.k8s.io/knative-eventing-namespaced-admin unchanged
+clusterrole.rbac.authorization.k8s.io/knative-eventing-namespaced-edit unchanged
+clusterrole.rbac.authorization.k8s.io/knative-eventing-namespaced-view unchanged
+clusterrole.rbac.authorization.k8s.io/knative-eventing-sources-controller unchanged
+clusterrole.rbac.authorization.k8s.io/knative-eventing-webhook unchanged
+clusterrole.rbac.authorization.k8s.io/knative-flows-namespaced-admin unchanged
+clusterrole.rbac.authorization.k8s.io/knative-messaging-namespaced-admin unchanged
+clusterrole.rbac.authorization.k8s.io/knative-sources-namespaced-admin unchanged
+clusterrole.rbac.authorization.k8s.io/messaging-addressable-resolver unchanged
+clusterrole.rbac.authorization.k8s.io/podspecable-binding configured
+clusterrole.rbac.authorization.k8s.io/service-addressable-resolver unchanged
+clusterrole.rbac.authorization.k8s.io/serving-addressable-resolver unchanged
+clusterrole.rbac.authorization.k8s.io/source-observer configured
+clusterrolebinding.rbac.authorization.k8s.io/eventing-channel-broker-controller unchanged
+clusterrolebinding.rbac.authorization.k8s.io/eventing-controller unchanged
+clusterrolebinding.rbac.authorization.k8s.io/eventing-controller-manipulator unchanged
+clusterrolebinding.rbac.authorization.k8s.io/eventing-controller-resolver unchanged
+clusterrolebinding.rbac.authorization.k8s.io/eventing-controller-source-observer unchanged
+clusterrolebinding.rbac.authorization.k8s.io/eventing-controller-sources-controller unchanged
+clusterrolebinding.rbac.authorization.k8s.io/eventing-webhook unchanged
+clusterrolebinding.rbac.authorization.k8s.io/eventing-webhook-podspecable-binding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/eventing-webhook-resolver unchanged
+clusterrolebinding.rbac.authorization.k8s.io/imc-controller unchanged
+clusterrolebinding.rbac.authorization.k8s.io/imc-dispatcher unchanged
+clusterrolebinding.rbac.authorization.k8s.io/pingsource-jobrunner unchanged
+configmap/config-br-default-channel unchanged
+configmap/config-br-defaults unchanged
+configmap/config-imc-event-dispatcher unchanged
+configmap/config-leader-election unchanged
+configmap/config-logging unchanged
+configmap/config-observability unchanged
+configmap/config-tracing unchanged
+configmap/default-ch-webhook unchanged
+secret/eventing-webhook-certs unchanged
+service/broker-filter unchanged
+service/broker-ingress unchanged
+service/eventing-webhook unchanged
+service/imc-dispatcher unchanged
+deployment.apps/broker-controller configured
+deployment.apps/eventing-controller unchanged
+deployment.apps/eventing-webhook unchanged
+deployment.apps/imc-controller unchanged
+deployment.apps/imc-dispatcher unchanged
+mutatingwebhookconfiguration.admissionregistration.k8s.io/sinkbindings.webhook.sources.knative.dev unchanged
+mutatingwebhookconfiguration.admissionregistration.k8s.io/webhook.eventing.knative.dev unchanged
+validatingwebhookconfiguration.admissionregistration.k8s.io/config.webhook.eventing.knative.dev unchanged
+validatingwebhookconfiguration.admissionregistration.k8s.io/validation.webhook.eventing.knative.dev unchanged
+
+kubectl apply -f ./manifest1.3/013-istio-1-9-0-cluster-local-gateway-base.yaml
+serviceaccount/cluster-local-gateway-service-account unchanged
+role.rbac.authorization.k8s.io/cluster-local-gateway-sds unchanged
+rolebinding.rbac.authorization.k8s.io/cluster-local-gateway-sds unchanged
+service/cluster-local-gateway unchanged
+deployment.apps/cluster-local-gateway configured
+gateway.networking.istio.io/cluster-local-gateway unchanged
+authorizationpolicy.security.istio.io/cluster-local-gateway unchanged
+
+kubectl apply -f ./manifest1.3/014-kubeflow-namespace-kubeflow-namespace-base.yaml
+namespace/kubeflow unchanged
+
+kubectl apply -f ./manifest1.3/015-kubeflow-roles-kubeflow-roles-base.yaml
+clusterrole.rbac.authorization.k8s.io/kubeflow-admin configured
+clusterrole.rbac.authorization.k8s.io/kubeflow-edit configured
+clusterrole.rbac.authorization.k8s.io/kubeflow-kubernetes-admin unchanged
+clusterrole.rbac.authorization.k8s.io/kubeflow-kubernetes-edit unchanged
+clusterrole.rbac.authorization.k8s.io/kubeflow-kubernetes-view unchanged
+clusterrole.rbac.authorization.k8s.io/kubeflow-view configured
+
+kubectl apply -f ./manifest1.3/016-istio-1-9-0-kubeflow-istio-resources-base.yaml
+clusterrole.rbac.authorization.k8s.io/kubeflow-istio-admin configured
+clusterrole.rbac.authorization.k8s.io/kubeflow-istio-edit unchanged
+clusterrole.rbac.authorization.k8s.io/kubeflow-istio-view unchanged
+gateway.networking.istio.io/kubeflow-gateway unchanged
+
+kubectl apply -f ./manifest1.3/017-pipeline-env-platform-agnostic-multi-user.yaml
+Error from server (Invalid): error when applying patch:
+{"metadata":{"annotations":{"kubectl.kubernetes.io/last-applied-configuration":"{\"apiVersion\":\"v1\",\"kind\":\"PersistentVolumeClaim\",\"metadata\":{\"annotations\":{},\"labels\":{\"application-crd-id\":\"kubeflow-pipelines\"},\"name\":\"minio-pvc\",\"namespace\":\"kubeflow\"},\"spec\":{\"accessModes\":[\"ReadWriteOnce\"],\"resources\":{\"requests\":{\"storage\":\"20Gi\"}}}}\n"}},"spec":{"storageClassName":null}}
+to:
+Resource: "/v1, Resource=persistentvolumeclaims", GroupVersionKind: "/v1, Kind=PersistentVolumeClaim"
+Name: "minio-pvc", Namespace: "kubeflow"
+for: "./manifest1.3/017-pipeline-env-platform-agnostic-multi-user.yaml": PersistentVolumeClaim "minio-pvc" is invalid: spec: Forbidden: is immutable after creation except resources.requests for bound claims
+Error from server (Invalid): error when applying patch:
+{"metadata":{"annotations":{"kubectl.kubernetes.io/last-applied-configuration":"{\"apiVersion\":\"v1\",\"kind\":\"PersistentVolumeClaim\",\"metadata\":{\"annotations\":{},\"labels\":{\"application-crd-id\":\"kubeflow-pipelines\"},\"name\":\"mysql-pv-claim\",\"namespace\":\"kubeflow\"},\"spec\":{\"accessModes\":[\"ReadWriteOnce\"],\"resources\":{\"requests\":{\"storage\":\"20Gi\"}}}}\n"}},"spec":{"storageClassName":null}}
+to:
+Resource: "/v1, Resource=persistentvolumeclaims", GroupVersionKind: "/v1, Kind=PersistentVolumeClaim"
+Name: "mysql-pv-claim", Namespace: "kubeflow"
+for: "./manifest1.3/017-pipeline-env-platform-agnostic-multi-user.yaml": PersistentVolumeClaim "mysql-pv-claim" is invalid: spec: Forbidden: is immutable after creation except resources.requests for bound claims
+customresourcedefinition.apiextensions.k8s.io/clusterworkflowtemplates.argoproj.io unchanged
+customresourcedefinition.apiextensions.k8s.io/compositecontrollers.metacontroller.k8s.io unchanged
+customresourcedefinition.apiextensions.k8s.io/controllerrevisions.metacontroller.k8s.io unchanged
+customresourcedefinition.apiextensions.k8s.io/cronworkflows.argoproj.io unchanged
+customresourcedefinition.apiextensions.k8s.io/decoratorcontrollers.metacontroller.k8s.io unchanged
+customresourcedefinition.apiextensions.k8s.io/scheduledworkflows.kubeflow.org unchanged
+customresourcedefinition.apiextensions.k8s.io/viewers.kubeflow.org unchanged
+customresourcedefinition.apiextensions.k8s.io/workfloweventbindings.argoproj.io unchanged
+customresourcedefinition.apiextensions.k8s.io/workflows.argoproj.io unchanged
+customresourcedefinition.apiextensions.k8s.io/workflowtemplates.argoproj.io unchanged
+serviceaccount/argo unchanged
+serviceaccount/kubeflow-pipelines-cache unchanged
+serviceaccount/kubeflow-pipelines-cache-deployer-sa unchanged
+serviceaccount/kubeflow-pipelines-container-builder unchanged
+serviceaccount/kubeflow-pipelines-metadata-writer unchanged
+serviceaccount/kubeflow-pipelines-viewer unchanged
+serviceaccount/meta-controller-service unchanged
+serviceaccount/metadata-grpc-server unchanged
+serviceaccount/ml-pipeline unchanged
+serviceaccount/ml-pipeline-persistenceagent unchanged
+serviceaccount/ml-pipeline-scheduledworkflow unchanged
+serviceaccount/ml-pipeline-ui unchanged
+serviceaccount/ml-pipeline-viewer-crd-service-account unchanged
+serviceaccount/ml-pipeline-visualizationserver unchanged
+serviceaccount/mysql unchanged
+serviceaccount/pipeline-runner unchanged
+role.rbac.authorization.k8s.io/argo-role unchanged
+role.rbac.authorization.k8s.io/kubeflow-pipelines-cache-deployer-role unchanged
+role.rbac.authorization.k8s.io/kubeflow-pipelines-cache-role unchanged
+role.rbac.authorization.k8s.io/kubeflow-pipelines-metadata-writer-role unchanged
+role.rbac.authorization.k8s.io/ml-pipeline unchanged
+role.rbac.authorization.k8s.io/ml-pipeline-persistenceagent-role unchanged
+role.rbac.authorization.k8s.io/ml-pipeline-scheduledworkflow-role unchanged
+role.rbac.authorization.k8s.io/ml-pipeline-ui unchanged
+role.rbac.authorization.k8s.io/ml-pipeline-viewer-controller-role unchanged
+role.rbac.authorization.k8s.io/pipeline-runner unchanged
+clusterrole.rbac.authorization.k8s.io/aggregate-to-kubeflow-pipelines-edit unchanged
+clusterrole.rbac.authorization.k8s.io/aggregate-to-kubeflow-pipelines-view unchanged
+clusterrole.rbac.authorization.k8s.io/argo-aggregate-to-admin unchanged
+clusterrole.rbac.authorization.k8s.io/argo-aggregate-to-edit unchanged
+clusterrole.rbac.authorization.k8s.io/argo-aggregate-to-view unchanged
+clusterrole.rbac.authorization.k8s.io/argo-cluster-role unchanged
+clusterrole.rbac.authorization.k8s.io/kubeflow-pipelines-cache-deployer-clusterrole unchanged
+clusterrole.rbac.authorization.k8s.io/kubeflow-pipelines-cache-role unchanged
+clusterrole.rbac.authorization.k8s.io/kubeflow-pipelines-edit configured
+clusterrole.rbac.authorization.k8s.io/kubeflow-pipelines-metadata-writer-role unchanged
+clusterrole.rbac.authorization.k8s.io/kubeflow-pipelines-view configured
+clusterrole.rbac.authorization.k8s.io/ml-pipeline-persistenceagent-role unchanged
+clusterrole.rbac.authorization.k8s.io/ml-pipeline-scheduledworkflow-role unchanged
+clusterrole.rbac.authorization.k8s.io/ml-pipeline-ui unchanged
+clusterrole.rbac.authorization.k8s.io/ml-pipeline-viewer-controller-role unchanged
+clusterrole.rbac.authorization.k8s.io/ml-pipeline unchanged
+rolebinding.rbac.authorization.k8s.io/argo-binding unchanged
+rolebinding.rbac.authorization.k8s.io/kubeflow-pipelines-cache-binding unchanged
+rolebinding.rbac.authorization.k8s.io/kubeflow-pipelines-cache-deployer-rolebinding unchanged
+rolebinding.rbac.authorization.k8s.io/kubeflow-pipelines-metadata-writer-binding unchanged
+rolebinding.rbac.authorization.k8s.io/ml-pipeline unchanged
+rolebinding.rbac.authorization.k8s.io/ml-pipeline-persistenceagent-binding unchanged
+rolebinding.rbac.authorization.k8s.io/ml-pipeline-scheduledworkflow-binding unchanged
+rolebinding.rbac.authorization.k8s.io/ml-pipeline-ui unchanged
+rolebinding.rbac.authorization.k8s.io/ml-pipeline-viewer-crd-binding unchanged
+rolebinding.rbac.authorization.k8s.io/pipeline-runner-binding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/argo-binding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/kubeflow-pipelines-cache-binding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/kubeflow-pipelines-cache-deployer-clusterrolebinding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/kubeflow-pipelines-metadata-writer-binding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/meta-controller-cluster-role-binding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/ml-pipeline-persistenceagent-binding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/ml-pipeline-scheduledworkflow-binding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/ml-pipeline-ui unchanged
+clusterrolebinding.rbac.authorization.k8s.io/ml-pipeline-viewer-crd-binding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/ml-pipeline unchanged
+configmap/kubeflow-pipelines-profile-controller-code-c2cd68d9k4 configured
+configmap/kubeflow-pipelines-profile-controller-env-5252m69c4c unchanged
+configmap/metadata-grpc-configmap unchanged
+configmap/ml-pipeline-ui-configmap unchanged
+configmap/pipeline-api-server-config-dc9hkg52h6 unchanged
+configmap/pipeline-install-config configured
+configmap/workflow-controller-configmap configured
+secret/mlpipeline-minio-artifact configured
+secret/mysql-secret configured
+service/cache-server unchanged
+service/kubeflow-pipelines-profile-controller unchanged
+service/metadata-envoy-service unchanged
+service/metadata-grpc-service unchanged
+service/minio-service unchanged
+service/ml-pipeline unchanged
+service/ml-pipeline-ui unchanged
+service/ml-pipeline-visualizationserver unchanged
+service/mysql unchanged
+service/workflow-controller-metrics unchanged
+deployment.apps/cache-deployer-deployment unchanged
+deployment.apps/cache-server configured
+deployment.apps/kubeflow-pipelines-profile-controller unchanged
+deployment.apps/metadata-envoy-deployment unchanged
+deployment.apps/metadata-grpc-deployment unchanged
+deployment.apps/metadata-writer configured
+deployment.apps/minio configured
+deployment.apps/ml-pipeline configured
+deployment.apps/ml-pipeline-persistenceagent configured
+deployment.apps/ml-pipeline-scheduledworkflow configured
+deployment.apps/ml-pipeline-ui configured
+deployment.apps/ml-pipeline-viewer-crd configured
+deployment.apps/ml-pipeline-visualizationserver unchanged
+deployment.apps/mysql unchanged
+deployment.apps/workflow-controller configured
+statefulset.apps/metacontroller configured
+compositecontroller.metacontroller.k8s.io/kubeflow-pipelines-profile-controller unchanged
+destinationrule.networking.istio.io/ml-pipeline unchanged
+destinationrule.networking.istio.io/ml-pipeline-minio unchanged
+destinationrule.networking.istio.io/ml-pipeline-mysql unchanged
+destinationrule.networking.istio.io/ml-pipeline-ui unchanged
+destinationrule.networking.istio.io/ml-pipeline-visualizationserver unchanged
+virtualservice.networking.istio.io/metadata-grpc unchanged
+virtualservice.networking.istio.io/ml-pipeline-ui unchanged
+authorizationpolicy.security.istio.io/metadata-grpc-service unchanged
+authorizationpolicy.security.istio.io/minio-service unchanged
+authorizationpolicy.security.istio.io/ml-pipeline unchanged
+authorizationpolicy.security.istio.io/ml-pipeline-ui unchanged
+authorizationpolicy.security.istio.io/ml-pipeline-visualizationserver unchanged
+authorizationpolicy.security.istio.io/mysql unchanged
+authorizationpolicy.security.istio.io/service-cache-server unchanged
+
+kubectl apply -f ./manifest1.3/018-kfserving-overlays-kubeflow.yaml
+customresourcedefinition.apiextensions.k8s.io/inferenceservices.serving.kubeflow.org configured
+customresourcedefinition.apiextensions.k8s.io/trainedmodels.serving.kubeflow.org configured
+role.rbac.authorization.k8s.io/leader-election-role unchanged
+clusterrole.rbac.authorization.k8s.io/kfserving-manager-role configured
+clusterrole.rbac.authorization.k8s.io/kfserving-proxy-role unchanged
+clusterrole.rbac.authorization.k8s.io/kubeflow-kfserving-admin configured
+clusterrole.rbac.authorization.k8s.io/kubeflow-kfserving-edit unchanged
+clusterrole.rbac.authorization.k8s.io/kubeflow-kfserving-view unchanged
+rolebinding.rbac.authorization.k8s.io/leader-election-rolebinding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/kfserving-manager-rolebinding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/kfserving-proxy-rolebinding unchanged
+configmap/inferenceservice-config configured
+configmap/kfserving-config unchanged
+secret/kfserving-webhook-server-secret unchanged
+service/kfserving-controller-manager-metrics-service unchanged
+service/kfserving-controller-manager-service unchanged
+service/kfserving-webhook-server-service unchanged
+statefulset.apps/kfserving-controller-manager unchanged
+certificate.cert-manager.io/serving-cert unchanged
+issuer.cert-manager.io/selfsigned-issuer unchanged
+mutatingwebhookconfiguration.admissionregistration.k8s.io/inferenceservice.serving.kubeflow.org configured
+validatingwebhookconfiguration.admissionregistration.k8s.io/inferenceservice.serving.kubeflow.org configured
+validatingwebhookconfiguration.admissionregistration.k8s.io/trainedmodel.serving.kubeflow.org configured
+
+kubectl apply -f ./manifest1.3/019-katib-installs-katib-with-kubeflow-cert-manager.yaml
+The PersistentVolumeClaim "katib-mysql" is invalid: spec: Forbidden: is immutable after creation except resources.requests for bound claims
+customresourcedefinition.apiextensions.k8s.io/experiments.kubeflow.org unchanged
+customresourcedefinition.apiextensions.k8s.io/suggestions.kubeflow.org unchanged
+customresourcedefinition.apiextensions.k8s.io/trials.kubeflow.org unchanged
+serviceaccount/katib-controller unchanged
+serviceaccount/katib-ui unchanged
+clusterrole.rbac.authorization.k8s.io/katib-controller unchanged
+clusterrole.rbac.authorization.k8s.io/katib-ui unchanged
+clusterrole.rbac.authorization.k8s.io/kubeflow-katib-admin configured
+clusterrole.rbac.authorization.k8s.io/kubeflow-katib-edit unchanged
+clusterrole.rbac.authorization.k8s.io/kubeflow-katib-view unchanged
+clusterrolebinding.rbac.authorization.k8s.io/katib-controller unchanged
+clusterrolebinding.rbac.authorization.k8s.io/katib-ui unchanged
+configmap/katib-config unchanged
+configmap/trial-template unchanged
+secret/katib-mysql-secrets unchanged
+service/katib-controller unchanged
+service/katib-db-manager unchanged
+service/katib-mysql unchanged
+service/katib-ui unchanged
+deployment.apps/katib-controller unchanged
+deployment.apps/katib-db-manager unchanged
+deployment.apps/katib-mysql unchanged
+deployment.apps/katib-ui unchanged
+certificate.cert-manager.io/katib-webhook-cert unchanged
+issuer.cert-manager.io/katib-selfsigned-issuer unchanged
+virtualservice.networking.istio.io/katib-ui unchanged
+mutatingwebhookconfiguration.admissionregistration.k8s.io/katib.kubeflow.org configured
+validatingwebhookconfiguration.admissionregistration.k8s.io/katib.kubeflow.org configured
+
+kubectl apply -f ./manifest1.3/020-centraldashboard-overlays-istio.yaml
+serviceaccount/centraldashboard unchanged
+role.rbac.authorization.k8s.io/centraldashboard unchanged
+clusterrole.rbac.authorization.k8s.io/centraldashboard unchanged
+rolebinding.rbac.authorization.k8s.io/centraldashboard unchanged
+clusterrolebinding.rbac.authorization.k8s.io/centraldashboard unchanged
+configmap/centraldashboard-config unchanged
+configmap/centraldashboard-parameters unchanged
+service/centraldashboard unchanged
+deployment.apps/centraldashboard configured
+virtualservice.networking.istio.io/centraldashboard unchanged
+
+kubectl apply -f ./manifest1.3/021-admission-webhook-overlays-cert-manager.yaml
+customresourcedefinition.apiextensions.k8s.io/poddefaults.kubeflow.org unchanged
+serviceaccount/admission-webhook-service-account unchanged
+clusterrole.rbac.authorization.k8s.io/admission-webhook-cluster-role unchanged
+clusterrole.rbac.authorization.k8s.io/admission-webhook-kubeflow-poddefaults-admin configured
+clusterrole.rbac.authorization.k8s.io/admission-webhook-kubeflow-poddefaults-edit configured
+clusterrole.rbac.authorization.k8s.io/admission-webhook-kubeflow-poddefaults-view unchanged
+clusterrolebinding.rbac.authorization.k8s.io/admission-webhook-cluster-role-binding unchanged
+service/admission-webhook-service unchanged
+deployment.apps/admission-webhook-deployment unchanged
+certificate.cert-manager.io/admission-webhook-cert unchanged
+issuer.cert-manager.io/admission-webhook-selfsigned-issuer unchanged
+mutatingwebhookconfiguration.admissionregistration.k8s.io/admission-webhook-mutating-webhook-configuration configured
+
+kubectl apply -f ./manifest1.3/022-jupyter-overlays-istio.yaml
+serviceaccount/jupyter-web-app-service-account unchanged
+role.rbac.authorization.k8s.io/jupyter-web-app-jupyter-notebook-role unchanged
+clusterrole.rbac.authorization.k8s.io/jupyter-web-app-cluster-role unchanged
+clusterrole.rbac.authorization.k8s.io/jupyter-web-app-kubeflow-notebook-ui-admin configured
+clusterrole.rbac.authorization.k8s.io/jupyter-web-app-kubeflow-notebook-ui-edit unchanged
+clusterrole.rbac.authorization.k8s.io/jupyter-web-app-kubeflow-notebook-ui-view unchanged
+rolebinding.rbac.authorization.k8s.io/jupyter-web-app-jupyter-notebook-role-binding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/jupyter-web-app-cluster-role-binding unchanged
+configmap/jupyter-web-app-config-tkhtgh5mcm unchanged
+configmap/jupyter-web-app-parameters-chmg88cm48 unchanged
+service/jupyter-web-app-service unchanged
+deployment.apps/jupyter-web-app-deployment configured
+virtualservice.networking.istio.io/jupyter-web-app-jupyter-web-app unchanged
+
+kubectl apply -f ./manifest1.3/023-jupyter-overlays-kubeflow.yaml
+customresourcedefinition.apiextensions.k8s.io/notebooks.kubeflow.org configured
+serviceaccount/notebook-controller-service-account unchanged
+role.rbac.authorization.k8s.io/notebook-controller-leader-election-role unchanged
+clusterrole.rbac.authorization.k8s.io/notebook-controller-kubeflow-notebooks-admin configured
+clusterrole.rbac.authorization.k8s.io/notebook-controller-kubeflow-notebooks-edit unchanged
+clusterrole.rbac.authorization.k8s.io/notebook-controller-kubeflow-notebooks-view unchanged
+clusterrole.rbac.authorization.k8s.io/notebook-controller-role configured
+rolebinding.rbac.authorization.k8s.io/notebook-controller-leader-election-rolebinding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/notebook-controller-role-binding unchanged
+configmap/notebook-controller-config-m44cmb547t unchanged
+service/notebook-controller-service unchanged
+deployment.apps/notebook-controller-deployment unchanged
+
+kubectl apply -f ./manifest1.3/024-profiles-overlays-kubeflow.yaml
+customresourcedefinition.apiextensions.k8s.io/profiles.kubeflow.org created
+serviceaccount/profiles-controller-service-account unchanged
+role.rbac.authorization.k8s.io/profiles-leader-election-role unchanged
+rolebinding.rbac.authorization.k8s.io/profiles-leader-election-rolebinding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/profiles-cluster-role-binding unchanged
+configmap/profiles-config-46c7tgh6fd unchanged
+service/profiles-kfam unchanged
+deployment.apps/profiles-deployment unchanged
+virtualservice.networking.istio.io/profiles-kfam unchanged
+
+kubectl apply -f ./manifest1.3/025-volumes-web-app-overlays-istio.yaml
+serviceaccount/volumes-web-app-service-account unchanged
+clusterrole.rbac.authorization.k8s.io/volumes-web-app-cluster-role unchanged
+clusterrole.rbac.authorization.k8s.io/volumes-web-app-kubeflow-volume-ui-admin configured
+clusterrole.rbac.authorization.k8s.io/volumes-web-app-kubeflow-volume-ui-edit unchanged
+clusterrole.rbac.authorization.k8s.io/volumes-web-app-kubeflow-volume-ui-view unchanged
+clusterrolebinding.rbac.authorization.k8s.io/volumes-web-app-cluster-role-binding unchanged
+configmap/volumes-web-app-parameters-4gg8cm2gmk unchanged
+service/volumes-web-app-service unchanged
+deployment.apps/volumes-web-app-deployment configured
+virtualservice.networking.istio.io/volumes-web-app-volumes-web-app unchanged
+
+kubectl apply -f ./manifest1.3/026-tensorboard-overlays-kubeflow.yaml
+customresourcedefinition.apiextensions.k8s.io/tensorboards.tensorboard.kubeflow.org configured
+serviceaccount/tensorboard-controller unchanged
+role.rbac.authorization.k8s.io/tensorboard-controller-leader-election-role unchanged
+clusterrole.rbac.authorization.k8s.io/tensorboard-controller-manager-role configured
+clusterrole.rbac.authorization.k8s.io/tensorboard-controller-proxy-role unchanged
+rolebinding.rbac.authorization.k8s.io/tensorboard-controller-leader-election-rolebinding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/tensorboard-controller-manager-rolebinding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/tensorboard-controller-proxy-rolebinding unchanged
+configmap/tensorboard-controller-config-bf88mm96c8 unchanged
+service/tensorboard-controller-controller-manager-metrics-service unchanged
+deployment.apps/tensorboard-controller-controller-manager unchanged
+
+kubectl apply -f ./manifest1.3/027-tensorboard-overlays-istio.yaml
+serviceaccount/tensorboards-web-app-service-account unchanged
+clusterrole.rbac.authorization.k8s.io/tensorboards-web-app-cluster-role unchanged
+clusterrole.rbac.authorization.k8s.io/tensorboards-web-app-kubeflow-tensorboard-ui-admin configured
+clusterrole.rbac.authorization.k8s.io/tensorboards-web-app-kubeflow-tensorboard-ui-edit unchanged
+clusterrole.rbac.authorization.k8s.io/tensorboards-web-app-kubeflow-tensorboard-ui-view unchanged
+clusterrolebinding.rbac.authorization.k8s.io/tensorboards-web-app-cluster-role-binding unchanged
+configmap/tensorboards-web-app-parameters-g28fbd6cch unchanged
+service/tensorboards-web-app-service unchanged
+deployment.apps/tensorboards-web-app-deployment configured
+virtualservice.networking.istio.io/tensorboards-web-app-tensorboards-web-app unchanged
+
+kubectl apply -f ./manifest1.3/028-tf-training-overlays-kubeflow.yaml
+customresourcedefinition.apiextensions.k8s.io/tfjobs.kubeflow.org unchanged
+serviceaccount/tf-job-operator unchanged
+clusterrole.rbac.authorization.k8s.io/kubeflow-tfjobs-admin configured
+clusterrole.rbac.authorization.k8s.io/kubeflow-tfjobs-edit unchanged
+clusterrole.rbac.authorization.k8s.io/kubeflow-tfjobs-view unchanged
+clusterrole.rbac.authorization.k8s.io/tf-job-operator unchanged
+clusterrolebinding.rbac.authorization.k8s.io/tf-job-operator unchanged
+service/tf-job-operator unchanged
+deployment.apps/tf-job-operator unchanged
+
+kubectl apply -f ./manifest1.3/029-pytorch-job-overlays-kubeflow.yaml
+customresourcedefinition.apiextensions.k8s.io/pytorchjobs.kubeflow.org unchanged
+serviceaccount/pytorch-operator unchanged
+clusterrole.rbac.authorization.k8s.io/kubeflow-pytorchjobs-admin configured
+clusterrole.rbac.authorization.k8s.io/kubeflow-pytorchjobs-edit unchanged
+clusterrole.rbac.authorization.k8s.io/kubeflow-pytorchjobs-view unchanged
+clusterrole.rbac.authorization.k8s.io/pytorch-operator unchanged
+clusterrolebinding.rbac.authorization.k8s.io/pytorch-operator unchanged
+service/pytorch-operator unchanged
+deployment.apps/pytorch-operator unchanged
+
+kubectl apply -f ./manifest1.3/030-mpi-job-overlays-kubeflow.yaml
+customresourcedefinition.apiextensions.k8s.io/mpijobs.kubeflow.org unchanged
+serviceaccount/mpi-operator unchanged
+clusterrole.rbac.authorization.k8s.io/kubeflow-mpijobs-admin configured
+clusterrole.rbac.authorization.k8s.io/kubeflow-mpijobs-edit unchanged
+clusterrole.rbac.authorization.k8s.io/kubeflow-mpijobs-view unchanged
+clusterrole.rbac.authorization.k8s.io/mpi-operator unchanged
+clusterrolebinding.rbac.authorization.k8s.io/mpi-operator unchanged
+configmap/mpi-operator-config unchanged
+deployment.apps/mpi-operator unchanged
+
+kubectl apply -f ./manifest1.3/031-mxnet-job-overlays-kubeflow.yaml
+customresourcedefinition.apiextensions.k8s.io/mxjobs.kubeflow.org unchanged
+serviceaccount/mxnet-operator unchanged
+clusterrole.rbac.authorization.k8s.io/kubeflow-mxjobs-admin configured
+clusterrole.rbac.authorization.k8s.io/kubeflow-mxjobs-edit unchanged
+clusterrole.rbac.authorization.k8s.io/kubeflow-mxjobs-view unchanged
+clusterrole.rbac.authorization.k8s.io/mxnet-operator unchanged
+clusterrolebinding.rbac.authorization.k8s.io/mxnet-operator unchanged
+deployment.apps/mxnet-operator unchanged
+
+kubectl apply -f ./manifest1.3/032-xgboost-job-overlays-kubeflow.yaml
+customresourcedefinition.apiextensions.k8s.io/xgboostjobs.xgboostjob.kubeflow.org configured
+serviceaccount/xgboost-operator-service-account unchanged
+clusterrole.rbac.authorization.k8s.io/xgboost-operator-cluster-role unchanged
+clusterrolebinding.rbac.authorization.k8s.io/xgboost-operator-cluster-role-binding unchanged
+configmap/xgboost-operator-xgboost-operator-config-6ct58987ht unchanged
+service/xgboost-operator-service unchanged
+deployment.apps/xgboost-operator-deployment unchanged
+
+kubectl apply -f ./manifest1.3/033-user-namespace-user-namespace-base.yaml
+configmap/default-install-config-9h2h2b6hbk unchanged
+profile.kubeflow.org/kubeflow-user-example-com created
+
+start to patch...
+./patch/auth.yaml
+configmap "dex" deleted
+deployment.apps "dex" deleted
+configmap "default-install-config-9h2h2b6hbk" deleted
+profile.kubeflow.org "kubeflow-user-example-com" deleted
+
+configmap/dex created
+deployment.apps/dex created
+configmap/default-install-config-9h2h2b6hbk created
+profile.kubeflow.org/kubeflow-user-example-com created
+
+./patch/cluster-local-gateway.yaml
+deployment.apps "cluster-local-gateway" deleted
+
+deployment.apps/cluster-local-gateway created
+
+./patch/data.yaml
+deployment.apps "minio" deleted
+
+deployment.apps/minio created
+
+./patch/envoy-filter.yaml
+envoyfilter.networking.istio.io "authn-filter" deleted
+
+envoyfilter.networking.istio.io/authn-filter created
+
+./patch/istio-ingressgateway.yaml
+deployment.apps "istio-ingressgateway" deleted
+
+deployment.apps/istio-ingressgateway created
+
+./patch/istiod.yaml
+deployment.apps "istiod" deleted
+configmap "istio-sidecar-injector" deleted
+
+deployment.apps/istiod created
+configmap/istio-sidecar-injector created
+
+./patch/jupyter-web-app.yaml
+deployment.apps "jupyter-web-app-deployment" deleted
+
+deployment.apps/jupyter-web-app-deployment created
+
+./patch/kfserving.yaml
+image.caching.internal.knative.dev "queue-proxy" deleted
+configmap "config-deployment" deleted
+configmap "inferenceservice-config" deleted
+
+image.caching.internal.knative.dev/queue-proxy created
+configmap/config-deployment created
+configmap/inferenceservice-config created
+
+./patch/pipeline-env-platform-agnostic-multi-user.yaml
+configmap "kubeflow-pipelines-profile-controller-code-c2cd68d9k4" deleted
+configmap "pipeline-install-config" deleted
+deployment.apps "workflow-controller" deleted
+deployment.apps "kubeflow-pipelines-profile-controller" deleted
+
+configmap/kubeflow-pipelines-profile-controller-code-c2cd68d9k4 created
+configmap/pipeline-install-config created
+deployment.apps/workflow-controller created
+deployment.apps/kubeflow-pipelines-profile-controller created
+
+./patch/tensorboard.yaml
+deployment.apps "tensorboards-web-app-deployment" deleted
+
+deployment.apps/tensorboards-web-app-deployment created
+
+./patch/volumes-web-app.yaml
+deployment.apps "volumes-web-app-deployment" deleted
+
+deployment.apps/volumes-web-app-deployment created
+
+./patch/workflow-controller.yaml
+configmap "workflow-controller-configmap" deleted
+deployment.apps "workflow-controller" deleted
+deployment.apps "cache-server" deleted
+
+configmap/workflow-controller-configmap created
+deployment.apps/workflow-controller created
+deployment.apps/cache-server created
