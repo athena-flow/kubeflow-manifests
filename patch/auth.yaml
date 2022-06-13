@@ -86,7 +86,7 @@ kind: ConfigMap
 metadata:
   name: default-install-config-9h2h2b6hbk
 ---
-apiVersion: kubeflow.org/v1beta1
+apiVersion: kubeflow.org/v1beta2
 kind: Profile
 metadata:
   name: kubeflow-user-example-com
