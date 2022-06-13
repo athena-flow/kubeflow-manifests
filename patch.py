@@ -26,6 +26,7 @@ def patchInstall(path):
         files = sorted(files)
         for f in files:
             installfile = root + "/" + f
+            print(installfile)
             cmd_delete = "kubectl delete -f {installfile}".format(installfile=installfile)
             p = subprocess.Popen(cmd_delete,shell=True,stdout=subprocess.PIPE)
             out = p.stdout.read()
