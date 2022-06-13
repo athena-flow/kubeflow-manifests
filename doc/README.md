@@ -25,6 +25,8 @@ kubectl patch storageclass biocloud -p '{"metadata": {"annotations":{"storagecla
 http://10.50.10.19:30000/
 admin@example.com
 password
+
+https://github.com/kubeflow/katib/
 ```
 
 ```
