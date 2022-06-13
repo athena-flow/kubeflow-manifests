@@ -639,3 +639,8 @@ configmap/default-install-config-9h2h2b6hbk created
 profile.kubeflow.org/kubeflow-user-example-com unchanged
 
 start to patch...
+
+
+Error from server (NotFound): error when deleting "./patch/auth.yaml": the server could not find the requested resource (delete profiles.kubeflow.org kubeflow-user-example-com)
+Error from server (NotFound): error when creating "./patch/auth.yaml": the server could not find the requested resource (post profiles.kubeflow.org)
+
