@@ -26,4 +26,7 @@ password
 
 ```
 Using a password on the command line interface can be insecure
+
+No default Storage Class is set. Can't create new Disks for the new Notebook. Please use an Existing Disk.
+k8s default Storage Class 
 ```
