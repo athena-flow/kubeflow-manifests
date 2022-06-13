@@ -2385,6 +2385,7 @@ spec:
   resources:
     requests:
       storage: 20Gi
+  storageClassName: biocloud
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -2399,6 +2400,7 @@ spec:
   resources:
     requests:
       storage: 20Gi
+  storageClassName: biocloud
 ---
 apiVersion: apps/v1
 kind: Deployment
