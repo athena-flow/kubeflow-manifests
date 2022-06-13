@@ -644,3 +644,5 @@ start to patch...
 Error from server (NotFound): error when deleting "./patch/auth.yaml": the server could not find the requested resource (delete profiles.kubeflow.org kubeflow-user-example-com)
 Error from server (NotFound): error when creating "./patch/auth.yaml": the server could not find the requested resource (post profiles.kubeflow.org)
 
+error: unable to recognize "patch/auth.yaml": no matches for kind "Profile" in version "kubeflow.org/v1beta1"
+
