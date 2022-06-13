@@ -30,6 +30,10 @@ admin@example.com
 password
 
 https://github.com/kubeflow/katib/
+
+istiod.yaml
+cluster-local-gateway.yaml
+istio-ingressgateway.yaml
 ```
 
 ```
