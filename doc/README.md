@@ -38,6 +38,9 @@ admin@example.com
 password
 
 https://github.com/kubeflow/katib/
+https://developer.aliyun.com/article/740721
+https://zhuanlan.zhihu.com/p/77607425
+https://spark.apache.org/docs/2.4.0/running-on-kubernetes.html#running-spark-on-kubernetes
 
 istiod.yaml
 cluster-local-gateway.yaml
