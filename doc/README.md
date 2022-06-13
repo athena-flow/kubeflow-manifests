@@ -52,6 +52,7 @@ k8s default Storage Class
 kubeflow no namespace
 profiles.kubeflow.org 
 kubectl -n kubeflow create serviceaccount default-editor --dry-run=true -o yaml | kubectl apply -f -
+no matches for kind "Profile" in version "kubeflow.org/v1beta1"
 ```
 
 ```
