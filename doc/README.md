@@ -5,6 +5,7 @@ cd kubeflow-manifests
 python install.py
 
 kubectl get po -A
+kubectl get pod -n kubeflow
 
 kubectl get po -A|grep kubeflow
 sudo docker images|grep google
