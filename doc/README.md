@@ -18,6 +18,10 @@ sudo docker images|grep google
 kubectl get pvc -A|grep kubeflow
 kubectl describe pvc katib-mysql -n kubeflow
 kubectl get storageclass
+
+http://10.50.10.19:30000/
+admin@example.com
+password
 ```
 
 ```
