@@ -15,6 +15,9 @@ kubectl apply -f patch/auth.yaml
 kubectl get po -A|grep kubeflow
 sudo docker images|grep google
 
+kubectl get deploy -nauth dex -oyaml
+kubectl get deploy -nistio-system istiod -oyaml
+
 kubectl get pvc -A|grep kubeflow
 kubectl describe pvc katib-mysql -n kubeflow
 kubectl get storageclass
