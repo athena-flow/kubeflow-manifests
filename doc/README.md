@@ -19,6 +19,7 @@ kubectl get deploy -nauth dex -oyaml
 kubectl get deploy -nistio-system istiod -oyaml
 
 kubectl logs -f istiod-5d6d848d84-wdm4d -nistio-system
+kubectl delete -f manifest1.3/
 
 kubectl get pvc -A|grep kubeflow
 kubectl describe pvc katib-mysql -n kubeflow
