@@ -1011,3 +1011,26 @@ Events:
   Type    Reason         Age                     From                         Message
   ----    ------         ----                    ----                         -------
   Normal  FailedBinding  3m15s (x462 over 118m)  persistentvolume-controller  no persistent volumes available for this claim and no storage class is set
+
+
+PersistentVolumeClaim: kubeflow/katib-mysql
+PersistentVolumeClaim "katib-mysql" is invalid: spec: Forbidden: is immutable after creation except resources.requests for bound claims
+
+
+kubectl describe pvc minio-pvc -n kubeflow
+Name:          minio-pvc
+Namespace:     kubeflow
+StorageClass:  biocloud
+Status:        Pending
+Volume:
+Labels:        <none>
+Annotations:   k8s.kuboard.cn/pvcType: Dynamic
+Finalizers:    [kubernetes.io/pvc-protection]
+Capacity:
+Access Modes:
+VolumeMode:    Filesystem
+Mounted By:    <none>
+Events:
+  Type    Reason                Age                  From                         Message
+  ----    ------                ----                 ----                         -------
+  Normal  WaitForFirstConsumer  8s (x14 over 3m10s)  persistentvolume-controller  waiting for first consumer to be created before binding

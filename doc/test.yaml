@@ -1,0 +1,36 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  annotations:
+    k8s.kuboard.cn/pvcType: Dynamic
+  creationTimestamp: '2022-06-13T05:47:37Z'
+  finalizers:
+    - kubernetes.io/pvc-protection
+  managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata': {}
+        'f:spec':
+          'f:resources': {}
+      manager: Mozilla
+      operation: Update
+      time: '2022-06-13T05:47:37Z'
+  name: test
+  namespace: kubeflow
+  resourceVersion: '51623588'
+  selfLink: /api/v1/namespaces/kubeflow/persistentvolumeclaims/test
+  uid: f82addd2-8d08-4400-b6ad-45f0890ba09d
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: '2'
+  storageClassName: biocloud
+  volumeMode: Filesystem
+status:
+  phase: Pending
+
+
