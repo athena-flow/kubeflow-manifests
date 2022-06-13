@@ -49,6 +49,7 @@ No default Storage Class is set. Can't create new Disks for the new Notebook. Pl
 k8s default Storage Class 
 kubeflow no namespace
 profiles.kubeflow.org 
+kubectl -n kubeflow create serviceaccount default-editor --dry-run=true -o yaml | kubectl apply -f -
 ```
 
 ```
