@@ -33,3 +33,19 @@ Using a password on the command line interface can be insecure
 No default Storage Class is set. Can't create new Disks for the new Notebook. Please use an Existing Disk.
 k8s default Storage Class 
 ```
+
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvctest
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "nfs-client"
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Mi
+```
+
