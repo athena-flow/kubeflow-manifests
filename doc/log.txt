@@ -1034,3 +1034,7 @@ Events:
   Type    Reason                Age                  From                         Message
   ----    ------                ----                 ----                         -------
   Normal  WaitForFirstConsumer  8s (x14 over 3m10s)  persistentvolume-controller  waiting for first consumer to be created before binding
+
+kubectl get storageclass
+NAME       PROVISIONER    RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+biocloud   nfs-biocloud   Retain          WaitForFirstConsumer   false                  228d

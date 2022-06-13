@@ -11,4 +11,5 @@ sudo docker images|grep google
 
 kubectl get pvc -A|grep kubeflow
 kubectl describe pvc katib-mysql -n kubeflow
+kubectl get storageclass
 ```
