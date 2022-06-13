@@ -19,6 +19,9 @@ kubectl get pvc -A|grep kubeflow
 kubectl describe pvc katib-mysql -n kubeflow
 kubectl get storageclass
 
+kubectl logs -f profiles-deployment-6888b86fc8-jlgm4 -n kubeflow kfam
+kubectl logs -f profiles-deployment-6888b86fc8-jlgm4 -n kubeflow manager
+
 kubectl get sc
 kubectl patch storageclass biocloud -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 
