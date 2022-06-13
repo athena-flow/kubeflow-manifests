@@ -19,6 +19,9 @@ kubectl get pvc -A|grep kubeflow
 kubectl describe pvc katib-mysql -n kubeflow
 kubectl get storageclass
 
+kubectl get sc
+kubectl patch storageclass biocloud -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+
 http://10.50.10.19:30000/
 admin@example.com
 password
