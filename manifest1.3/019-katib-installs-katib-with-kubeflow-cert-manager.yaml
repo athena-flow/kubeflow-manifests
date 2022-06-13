@@ -499,7 +499,6 @@ spec:
   resources:
     requests:
       storage: 10Gi
-  storageClassName: biocloud 
 ---
 apiVersion: apps/v1
 kind: Deployment
