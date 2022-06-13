@@ -993,3 +993,21 @@ kubeflow           ml-pipeline-viewer-crd-67f54547b4-nkx5c                      
 kubeflow           ml-pipeline-visualizationserver-7b6ff7bf5f-ff9xs                  0/2     Init:0/1            0          65s
 kubeflow           mysql-79cb69477c-6h64t                                            0/2     Pending             0          65s
 kubeflow           notebook-controller-deployment-7fb67c4d4c-m2zsb                   0/1     ContainerCreating   0          4s
+
+
+kubectl describe pvc katib-mysql -n kubeflow
+Name:          katib-mysql
+Namespace:     kubeflow
+StorageClass:
+Status:        Pending
+Volume:
+Labels:        <none>
+Annotations:   Finalizers:  [kubernetes.io/pvc-protection]
+Capacity:
+Access Modes:
+VolumeMode:    Filesystem
+Mounted By:    katib-mysql-f6b75dd75-znvlk
+Events:
+  Type    Reason         Age                     From                         Message
+  ----    ------         ----                    ----                         -------
+  Normal  FailedBinding  3m15s (x462 over 118m)  persistentvolume-controller  no persistent volumes available for this claim and no storage class is set
