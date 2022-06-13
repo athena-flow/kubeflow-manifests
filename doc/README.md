@@ -6,6 +6,7 @@ python install.py
 
 kubectl get po -A
 kubectl get pod -n kubeflow
+kubectl logs katib-mysql-f6b75dd75-xj9bm -n kubeflow
 
 kubectl get po -A|grep kubeflow
 sudo docker images|grep google
