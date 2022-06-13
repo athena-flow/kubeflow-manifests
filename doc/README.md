@@ -42,6 +42,8 @@ https://github.com/kubeflow/katib/
 istiod.yaml
 cluster-local-gateway.yaml
 istio-ingressgateway.yaml
+
+grep -r 'kind: Profile' .
 ```
 
 ```

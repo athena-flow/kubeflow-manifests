@@ -646,3 +646,10 @@ Error from server (NotFound): error when creating "./patch/auth.yaml": the serve
 
 error: unable to recognize "patch/auth.yaml": no matches for kind "Profile" in version "kubeflow.org/v1beta1"
 
+grep -r 'kind: Profile' .
+./manifest1.3.1/033-user-namespace-user-namespace-base.yaml:kind: Profile
+./manifest1.3.1/024-profiles-overlays-kubeflow.yaml:    kind: Profile
+./patch/auth.yaml:kind: Profile
+./manifest1.3/033-user-namespace-user-namespace-base.yaml:kind: Profile
+./manifest1.3/024-profiles-overlays-kubeflow.yaml:    kind: Profile
+
