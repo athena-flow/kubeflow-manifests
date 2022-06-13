@@ -21,6 +21,8 @@ kubectl get deploy -nistio-system istiod -oyaml
 kubectl logs -f istiod-5d6d848d84-wdm4d -nistio-system
 kubectl delete -f manifest1.3/
 
+kubectl apply -f ./manifest1.3/033-user-namespace-user-namespace-base.yaml
+
 kubectl get pvc -A|grep kubeflow
 kubectl describe pvc katib-mysql -n kubeflow
 kubectl get storageclass
