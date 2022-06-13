@@ -5,4 +5,6 @@ cd kubeflow-manifests
 python install.py
 
 kubectl get po -A
+
+kubectl get po -A|grep kubeflow
 ```
