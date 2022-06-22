@@ -47,6 +47,12 @@ cluster-local-gateway.yaml
 istio-ingressgateway.yaml
 
 grep -r 'kind: Profile' .
+
+# Go to your Kubeflow deployment directory
+cd ${KF_DIR}
+
+# Remove Kubeflow
+kfctl delete -f ${CONFIG_FILE}
 ```
 
 ```
