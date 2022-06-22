@@ -48,6 +48,8 @@ istio-ingressgateway.yaml
 
 grep -r 'kind: Profile' .
 
+https://v0-7.kubeflow.org/docs/azure/deploy/install-kubeflow/
+
 # Go to your Kubeflow deployment directory
 cd ${KF_DIR}
 
